@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!-- bean에다가는 id와 class 정의 2가지를 넣는다. -->
+
+	<bean id="c1" class="step01.model.domain.Car" scope="prototype">
+	<!-- Car c1 = new Car(51,"busan"); -->
+		<constructor-arg name="carNo" value="51"/>
+		<constructor-arg name="carName">
+			<value>Busan</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- Setter Injection -->
+	<bean id="p1" class="step01.model.domain.People">
+	<!-- 생성자 호출을 명시할 때 constructor-arg를 사용한다,  이하 생성자 주입 코드  -->
+		<property name="name" value="spring"/>
+		<property name="age" value="32"/>
+		<property name="myCar" ref="c1"/>
+	</bean>	
+
+	<bean id="p2" class="step01.model.domain.People">
+	<!-- 생성자 호출을 명시할 때 constructor-arg를 사용한다,  이하 생성자 주입 코드  -->
+		<constructor-arg name="name" value="spring2"/>
+		<constructor-arg name="age" value="322"/>
+		<constructor-arg name="myCar" ref="c1"/>
+	</bean>
+	
+</beans>

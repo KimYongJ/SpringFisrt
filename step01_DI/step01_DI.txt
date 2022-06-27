@@ -1,0 +1,33 @@
+// https://maven.apache.org/plugins/maven-compiler-plugin/plugin-info.html
+
+step01_DI
+
+[학습]
+
+1. Container
+	- 객체 vs 인스턴스 : 
+	- 인스턴스의 생명주기를 관리, 추가적인 기능 제공
+	- ex) WAS의 Servlet 컨테이너
+	
+2. IoC (Inversion of Control)
+	- 제어의 역전
+	- 개발자가 아닌 컨테이너가 객체의 제어를 담당
+
+3. DI (Dependency Injection) 
+	- 의존성 주입 ( 강한 결합, 약한 결합 ) ( 생성자 주입 , 필드 주입 , )
+	- 서로 의존관계의 객체를 컨테이너가 연결
+		- Spring IoC 컨테이너 = ApplicationContext (BeanFactory Interface 상속) // BeanFactory = 가장 상위에 있는 인터페이스 // ApplicationContext는 BeanFactory를 상속에 상속을 거쳐 정의한 것
+		★★ Spring IoC 컨테이너가 관리하는 객체 = Bean 빈(Default : SingletonScope) = 스프링에서 관리하는 객체가 Bean이다.
+			★ Bean 빈이 되기 위한 조건 : 기본생성자 반드시 존재 + private 필드 반드시 존재 + getter/setter가 반드시 존재 해야 한다.
+			★ Bean 객체 생성 하기 : src/main/resources 밑에 설정 파일을 놓는다. 이 때 xml파일을 만들 때 Spring Bean Configuration file 로 만든다.
+			★ src/main/resources 밑에만든 xml파일에 bean 설정을 하는데 bean에다가는 id와 class 정의 2가지를 넣는다.
+		- Constructor Injection(생성자 주입) (*추천)
+		- Setter Injection(수정자 주입)
+		- Field Injection(필드 주입)
+		
+4. Annotation
+	- @Configuration : 스프링 설정 클래스를 선언하는 어노테이션
+	- @Bean : bean을 정의하는 어노테이션
+    - @ComponentScan : @Controller, @Service, @Repository, @Component 어노테이션이 붙은 클래스를 찾아 컨테이너에 등록
+    - @Component : 컴포넌트 스캔의 대상이 되는 애노테이션 중 하나로써 주로 유틸, 기타 지원 클래스에 붙이는 어노테이션
+    - @Autowired : 주입 대상이되는 bean을 컨테이너에 찾아 주입하는 어노테이션
